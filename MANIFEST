@@ -1,0 +1,12 @@
+NAME       : libtdpack
+VERSION    : 
+BUILD      : Release
+DESCRIPTION: ECCC-MRD Collection of thermo dynamic routines for numerical weather prediction 
+SUMMARY    : Library of thermo dynamic routines for numerical weather prediction 
+MAINTAINER : Vivian Lee - Vivian.Lee@ec.gc.ca
+URL        : https://gitlab.science.gc.ca/RPN-SI/libtdpack
+
+# Dependencies 
+#    =,<,<=,>,>= : Version rules
+#    ~           : Optional
+
