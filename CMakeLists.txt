@@ -32,7 +32,10 @@ set_target_properties(tdpack PROPERTIES
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
     POSITION_INDEPENDENT_CODE ON)
    
-ec_install_prefix(${NAME} ${PROJECT_VERSION} PACKAGE_PREFIX)  # Define package prefix  
+install(TARGETS tdpack)
+install(FILES ${PROJECT_MODULE_FILES} TYPE INCLUDE)
+    
+    ec_install_prefix(${NAME} ${PROJECT_VERSION} PACKAGE_PREFIX)  # Define package prefix  
 ec_build_config()                                             # Create build configuration script
 ec_prepare_ssm()                                              # Prepare ssm packaging files
 
