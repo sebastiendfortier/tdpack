@@ -27,7 +27,7 @@ set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod)
 ec_build_info()            # Generate build include file (optional)
 
 add_library(tdpack ${PROJECT_C_FILES} ${PROJECT_F_FILES})
-add_dependencies(tdpack libtdpack_build_info)
+add_dependencies(tdpack tdpack_build_info)
 set_target_properties(tdpack PROPERTIES
     VERSION ${PROJECT_VERSION}
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
