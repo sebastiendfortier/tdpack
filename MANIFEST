@@ -1,4 +1,4 @@
-NAME       : libtdpack
+NAME       : tdpack
 VERSION    : 
 BUILD      : Release
 DESCRIPTION: ECCC-MRD Collection of thermodynamic routines for numerical weather prediction 
@@ -9,5 +9,3 @@ URL        : https://gitlab.science.gc.ca/RPN-SI/libtdpack
 # Dependencies 
 #    =,<,<=,>,>= : Version rules
 #    ~           : Optional
-
-./lib
