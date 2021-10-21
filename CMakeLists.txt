@@ -22,6 +22,7 @@ include(ec_doxygen)
 file(GLOB PROJECT_C_FILES src/*.c)
 file(GLOB PROJECT_F_FILES src/*.F90)
 file(GLOB PROJECT_INCLUDE_FILES src/*.h*)
+set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod)
 
 ec_build_info()            # Generate build include file (optional)
 
