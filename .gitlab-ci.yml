@@ -9,6 +9,7 @@ stages:
 before_script:
    # Force color CMake output even when output is not TTY
    - export CLICOLOR_FORCE=true
+   - set +e
 
 build:intel-19.0.3:
    stage: build
@@ -32,7 +33,7 @@ build:gnu-7.4.0:
       - master
       - dev
    script:
-      - set +e; source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh; set -e
+      - source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh
       - mkdir build_gnu-7.4.0
       - cd build_gnu-7.4.0
       - cmake ../ 
