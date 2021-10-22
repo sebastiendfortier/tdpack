@@ -32,7 +32,7 @@ build:gnu-7.4.0:
       - master
       - dev
    script:
-      - set +x; source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh; set -x
+      - set -e; source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh; set +e
       - mkdir build_gnu-7.4.0
       - cd build_gnu-7.4.0
       - cmake ../ 
