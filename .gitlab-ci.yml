@@ -9,7 +9,6 @@ stages:
 before_script:
    # Force color CMake output even when output is not TTY
    - export CLICOLOR_FORCE=true
-   - set +e
 
 build:intel-19.0.3:
    stage: build
