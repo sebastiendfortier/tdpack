@@ -18,13 +18,12 @@ option(BUILD_SHARED_LIBS "Build shared libraries instead of static ones." FALSE)
 enable_language(C Fortran)
 include(ec_compiler_presets)
 include(ec_doxygen)
+ec_build_info()            # Generate build include file (optional)
 
 file(GLOB PROJECT_C_FILES src/*.c)
 file(GLOB PROJECT_F_FILES src/*.F90)
 file(GLOB PROJECT_INCLUDE_FILES src/*.h*)
-set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod)
-
-ec_build_info()            # Generate build include file (optional)
+set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod ${CMAKE_CURRENT_BINARY_DIR}/tdpack.mod)
 
 add_library(tdpack ${PROJECT_C_FILES} ${PROJECT_F_FILES})
 add_dependencies(tdpack tdpack_build_info)
