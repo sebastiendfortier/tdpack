@@ -12,7 +12,7 @@ before_script:
 
 build:XC50_intel-19.0.5:
    stage: build
-   tags
+   tags:
       - XC50-login
    only:
       - master
