@@ -33,6 +33,7 @@
 ! 002      B. Bilodeau (January 2001) - Automatic arrays
 ! 003      B. Bilodeau (September 2003) - IBM conversion
 !                       - call to vslog from massvp4 library
+! 004      V. Lee (Dec 2021) - remove vslog, use NI, not N for I loop
 !
 !Object
 !          to calculate the dew point depression from specific
@@ -49,9 +50,9 @@
 ! ps       pressure in Pa
 ! swph     .true. to consider water and ice phase
 !          .false. to consider water phase only
-! ni       horizontal dimension
+! ni       horizontal dimension 
 ! nk       vertical dimension
-! n        number of treated points
+! n        number of treated points (same as ni)
 !
 !Notes
 !          if hu <= 0, the value of hu is not changed but the
@@ -59,7 +60,7 @@
 !          of a negative number.
 !*
 !--------------------------------------------------------------------
-      Real, Dimension(n,nk) :: cte
+      Real, Dimension(ni,nk) :: cte
       Real td, petit , alpha
       Integer  k, i
 !--------------------------------------------------------------------
@@ -70,15 +71,11 @@
 !note: cte_ice=cte+alpha
 !
       Do k=1,nk
-      Do i=1,n
-          cte(i,k) = (foefq(Max(petit,hu(i,k)),ps(i,k)))/Real(aerk1w)
-      Enddo
-      Enddo
-!
-      Call vslog(cte,cte,n*nk)
-!
-      Do k=1,nk
-      Do i=1,n
+      Do i=1,ni
+         !cte(i,k) = log( (foefq(Max(petit,hu(i,k)),ps(i,k)))/Real(aerk1w) )
+         !above does not give bit results to last version - foefq is dble prec
+         cte(i,k) = (foefq(Max(petit,hu(i,k)),ps(i,k)))/Real(aerk1w)
+         cte(i,k) = log(cte(i,k))
          td = (Real(aerk3w)*cte(i,k) - Real(aerk2w)*trpl)/ &
               (cte(i,k) - Real(aerk2w))
 !

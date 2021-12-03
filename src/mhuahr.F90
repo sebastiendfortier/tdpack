@@ -31,6 +31,7 @@
 !Revision
 ! 001      B. Bilodeau  (August 1991)- Adaptation to UNIX
 ! 002      B. Bilodeau (January 2001) - Automatic arrays
+! 003      V. Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate relative humidity from specific humidity,
@@ -57,13 +58,13 @@
 !
       If(swph)Then
          Do k=1,nk
-         Do i=1,n
+         Do i=1,ni
                hr(i,k) = fohr(hu(i,k),tt(i,k),ps(i,k))
          Enddo
          Enddo
       Else
          Do k=1,nk
-         Do i=1,n
+         Do i=1,ni
                hr(i,k) = fohra(hu(i,k),tt(i,k),ps(i,k))
          Enddo
          Enddo

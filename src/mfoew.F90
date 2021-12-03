@@ -24,6 +24,7 @@
 !
 !Author
 !          N. Brunet  (Jan91)
+!Revision V.Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate the saturation vapour pressure. (Water and ice
@@ -45,7 +46,7 @@
 !--------------------------------------------------------------------
 !
       Do k=1,nk
-      Do i=1,n
+      Do i=1,ni
          ew(i,k) = foew(tt(i,k))
       Enddo
       Enddo

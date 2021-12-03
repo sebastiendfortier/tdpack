@@ -31,6 +31,7 @@
 !Revision
 ! 001      B. Bilodeau  (August 1991)- Adaptation to UNIX
 ! 002      B. Bilodeau  (January 2001) - Automatic arrays
+! 003      V.Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate the derivative of QSAT(saturation specific
@@ -56,7 +57,7 @@
 !
 !
       Do k=1,nk
-      Do i=1,n
+      Do i=1,ni
          qs = foqsa(tt(i,k),ps(i,k))
          dq(i,k) = fodqa(qs,tt(i,k))
       Enddo

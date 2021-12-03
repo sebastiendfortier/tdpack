@@ -34,6 +34,7 @@
 !          obtain results closer to those of tephigram
 ! 003      B. Bilodeau (Jan 2001) - Automatic arrays
 ! 004      M. Lepine (March 2003) -  CVMG... Replacements
+! 005      V. Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate TW or THETAW (according to the value SWTT)
@@ -65,7 +66,7 @@
       l2ocprv = 1.35e+07
 !
       Do k=1,nk
-         Do i=1,n
+         Do i=1,ni
 !
 !     on trouve 'tw' en solutionnant par methode
 !     de newton du 1er ordre avec 4 iterations.
@@ -179,6 +180,7 @@
 !          obtain results closer to those of tephigram
 ! 003      N. Brunet (sept 2000) adaptation to new functions
 !          sgamasp and schal.
+! 004      V. Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate tw or thetaw (according to the value swtt)
@@ -213,7 +215,7 @@
 !--------------------------------------------------------------------
 !
       Do k=1,nk
-         Do i=1,n
+         Do i=1,ni
 !
 !     on trouve 'tw' en solutionnant par methode
 !     de newton du 1er ordre avec 4 iterations.

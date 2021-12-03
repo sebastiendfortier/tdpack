@@ -51,6 +51,7 @@ SUBROUTINE modhui4(HU,TX,SWPH,NI,NK,N)
    ! 002      G. Pellerin (Mar 1996)   - Revised interpolation above 300mb
    !                                     level with limit above 150mb
    ! 003      B. Bilodeau (Jan 2001) - Automatic arrays
+   ! 004      V. Lee (Dec2021) - correct to use NI, not N for I loop
    !
    !Object
    !     To recalculate the specific humidity over 300MB.
@@ -88,13 +89,13 @@ SUBROUTINE modhui4(HU,TX,SWPH,NI,NK,N)
 
       DO 10 K0=NK-1,1,-1
          K=K0
-         DO I=1,N
+         DO I=1,NI
             PN0(I,K)=PN(I,K)
          ENDDO
          K=K0+1
          K=K0
          Qnot = 2.5E-6
-         DO 300 I=1,N
+         DO 300 I=1,NI
 !--------------------------------------------------------------------
            IF(PN0(I,K).LT.3.E4) THEN
 !--------------------------------------------------------------------

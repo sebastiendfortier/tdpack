@@ -39,6 +39,7 @@ subroutine mfoqsa3(qs,tt,ps,ni,nk,n)
    ! 002      B. Bilodeau (January 2001) - Automatic arrays
    ! 003      G. Pellerin (Mai 03) - IBM conversion
    !                  - calls to vexp routine (from massvp4 library)
+   ! 004      V. Lee (Dec 2021) - remove vexp, correction to use NI,not N for I loop
    !@description
    !          to calculate saturation specific humidity (water phase
    !          considered only for all temperatures)
@@ -54,14 +55,8 @@ subroutine mfoqsa3(qs,tt,ps,ni,nk,n)
    do k=1,nk
       do i=1,ni
          xt(i,k) = FOEWAF(tt(i,k))
-      enddo
-   enddo
-   !
-   call vexp(xt,xt,ni*nk)
-
-   do k=1,nk
-      do i=1,n
-         dtemp = aerk1w*xt(i,k)
+         xt(i,k) = exp(xt(i,k))
+         dtemp   = aerk1w*xt(i,k)
          qs(i,k) = FOQSTX(ps(i,k),dtemp)
       enddo
    enddo

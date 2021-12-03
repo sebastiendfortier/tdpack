@@ -28,6 +28,7 @@
 !
 !Author
 !          B. Bilodeau (Sep 2002), based on mfotvt from N. Brunet  (Jan91)
+!revision V.Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          To calculate virtual temperature tv from temperature tt,
@@ -53,7 +54,7 @@
 !--------------------------------------------------------------------
 
       Do k= 1,nk
-         Do i=1,n
+         Do i=1,ni
             tv(i,k) = fotvht(tt(i,k),qq(i,k),qh(i,k))
          Enddo
       Enddo

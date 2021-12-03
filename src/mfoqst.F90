@@ -42,6 +42,7 @@ subroutine mfoqst3(qs,tt,ps,ni,nk,n)
    ! 002      B. Bilodeau (January 2001) - Automatic arrays
    ! 003      L. Spacek   (May 2003)     - IBM conversion
    !                - calls to vexp routine (from massvp4 library)
+   ! 004      V. Lee (Dec 2021) - remove vexp, use NI, not N for I loop
    !
    !@description
    !          to calculate saturation specific humidity (water and ice
@@ -59,14 +60,8 @@ subroutine mfoqst3(qs,tt,ps,ni,nk,n)
    do k=1,nk
       do i=1,ni
          xt(i,k) = FOEWF(tt(i,k))
-      enddo
-   enddo
-
-   call vexp(xt,xt,ni*nk)
-
-   do k=1,nk
-      do i=1,n
-         dtemp = FOMULTS(xt(i,k),tt(i,k))
+         xt(i,k) = exp(xt(i,k))
+         dtemp   = FOMULTS(xt(i,k),tt(i,k))
          qs(i,k) = FOQSTX(ps(i,k),dtemp)
       enddo
    enddo
