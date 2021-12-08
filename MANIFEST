@@ -9,3 +9,4 @@ URL        : https://gitlab.science.gc.ca/RPN-SI/libtdpack
 # Dependencies 
 #    =,<,<=,>,>= : Version rules
 #    ~           : Optional
+#toto = 1.2.3-beta.nc
