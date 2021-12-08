@@ -34,17 +34,14 @@ subroutine mfoeic(ei,tt,ni,nk,n)
    integer ni, nk, n
    real ei(ni,nk), tt(ni,nk)
    !@author A. Plante (June 2003) - based on MFOEWA from N. Brunet  (Jan91)
+   ! V.Lee (Dec 2021) - remove vexp, correction to use NI, not N for I loop
    integer i, k
    real(REAL64), dimension(ni,nk) :: work
    !--------------------------------------------------------------------
    do k=1,nk
-      do i=1,n
+      do i=1,ni
          work(i,k)=fesif(tt(i,k))
-      enddo
-   enddo
-   call vexp(work,work,n*nk)
-   do k=1,nk
-      do i=1,n
+         work(i,k)=exp(work(i,k))
          ei(i,k)=aerk1i*work(i,k)
       enddo
    enddo

@@ -24,6 +24,7 @@
 !
 !Author
 !          N. Brunet  (Jan91)
+!revision V.Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate temperature tt from virtual temperature tv
@@ -46,7 +47,7 @@
 !--------------------------------------------------------------------
 !
       Do k=1,nk
-      Do i=1,n
+      Do i=1,ni
          tt(i,k) = fottv(tv(i,k),qq(i,k))
       Enddo
       Enddo

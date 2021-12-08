@@ -24,6 +24,7 @@
 !
 !Author
 !          N. Brunet  (Jan91)
+!revision V.Lee (Dec2021) - correction to use NI,not N for I loop
 !
 !Object
 !          to calculate the derivative of ln(ew) or ln(ei)
@@ -46,7 +47,7 @@
 !
 !
       Do k=1,nk
-      Do i=1,n
+      Do i=1,ni
         de(i,k) = fodle(tt(i,k))
       Enddo
       Enddo

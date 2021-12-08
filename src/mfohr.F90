@@ -43,6 +43,7 @@ subroutine mfohr4 (hr, qq, tt, ps, ni, nk, n, satuco)
    ! 002      B. Bilodeau  (January 2001) - Automatic arrays
    ! 003      G. Pellerin  (June 2003) - IBM conversion
    !                  - calls to vexp routine (from massvp4 library)
+   ! 004      V.Lee (Dec2021) - correct to use NI, not N for I loop
    !@description
    !          to calculate relative humidity from specific humidity,
    !          temperature and pressure(Water and ice phase
@@ -58,7 +59,7 @@ subroutine mfohr4 (hr, qq, tt, ps, ni, nk, n, satuco)
    !---------------------------------------------------------------------
    if (satuco) then
       do k=1,nk
-         do i=1,n
+         do i=1,ni
             temp1   = FOEWF(tt(i,k))
             temp1   = exp(temp1)
             temp1   = FOMULTS(temp1, tt(i,k))
@@ -67,7 +68,7 @@ subroutine mfohr4 (hr, qq, tt, ps, ni, nk, n, satuco)
       enddo
    else
       do k=1,nk
-         do i=1,n
+         do i=1,ni
             temp1   = FOEWAF(tt(i,k))
             temp1   = aerk1w*exp(temp1)
             hr(i,k) = FOHRX(qq(i,k), ps(i,k), temp1)

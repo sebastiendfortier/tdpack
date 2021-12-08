@@ -33,6 +33,7 @@
 ! 001      B. Bilodeau  (August 1991)- Adaptation to UNIX
 ! 002      N. Brunet (May 1994) - Improved iteration for tx = tv
 ! 003      B. Bilodeau (January 2001) - Automatic arrays
+! 004      V. Lee (Dec2021) - correct to use NI, not N for I loop
 !
 !Object
 !          to calculate specific humidity from dew point depressions,
@@ -62,7 +63,7 @@
 !
       If(swph)Then
          Do k=1,nk
-         Do i=1,n
+         Do i=1,ni
             td = tt(i,k) - es(i,k)
             e = foew(td)
             hu(i,k) = foqfe(e,ps(i,k))
@@ -70,7 +71,7 @@
          Enddo
       Else
          Do k=1,nk
-         Do i=1,n
+         Do i=1,ni
             td = tt(i,k) - es(i,k)
             e = foewa(td)
             hu(i,k) = foqfe(e,ps(i,k))

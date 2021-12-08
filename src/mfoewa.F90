@@ -36,18 +36,15 @@ subroutine mfoewa(ew,tt,ni,nk,n)
    !@author N. Brunet  (Jan91)
    !@revision
    ! 001   A. PLante (June 2003) - IBM conversion
+   ! 002   V.Lee (Dec 2021) - remove vexp, correct to use NI, not N for I loop
 
    integer i, k
    real(REAL64), dimension(ni,nk) :: work
    !--------------------------------------------------------------------
    do k=1,nk
-      do i=1,n
+      do i=1,ni
          work(i,k)=foewaf(tt(i,k))
-      enddo
-   enddo
-   call vexp(work,work,n*nk)
-   do k=1,nk
-      do i=1,n
+         work(i,k)=exp(work(i,k))
          ew(i,k)=aerk1w*work(i,k)
       enddo
    enddo
