@@ -33,10 +33,10 @@ set_target_properties(tdpack PROPERTIES
     POSITION_INDEPENDENT_CODE ON)
    
 install(TARGETS tdpack
-        PUBLIC_HEADER DESTINATION include/$ENV{EC_ARCH}
-        LIBRARY       DESTINATION lib/$ENV{EC_ARCH}
-        ARCHIVE       DESTINATION lib/$ENV{EC_ARCH})
-install(FILES ${PROJECT_MODULE_FILES} DESTINATION include/$ENV{EC_ARCH})
+        PUBLIC_HEADER DESTINATION include/${EC_SSM_ARCH}
+        LIBRARY       DESTINATION lib/${EC_SSM_ARCH}
+        ARCHIVE       DESTINATION lib/${EC_SSM_ARCH})
+install(FILES ${PROJECT_MODULE_FILES} DESTINATION include/${EC_SSM_ARCH})
 
 #----- Generate the config file for the project to be usable via cmake's find_package command
 set(INCLUDE_INSTALL_DIR include)
