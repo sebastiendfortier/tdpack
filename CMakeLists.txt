@@ -60,9 +60,9 @@ install(FILES   "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
 )
 
 #----- Packaging
-ec_package_name()    # Define package prefix  
-ec_build_config()    # Create build configuration script
-ec_prepare_ssm(lib)  # Prepare ssm packaging files
+ec_package_name()                # Define package prefix  
+ec_build_config()                # Create build configuration script
+ec_prepare_ssm(lib bin include)  # Prepare ssm packaging files
 
 set(CPACK_GENERATOR "TGZ")
 set(CPACK_PACKAGE_VENDOR "ECCC")
