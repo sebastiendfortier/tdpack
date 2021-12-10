@@ -1,7 +1,8 @@
 {
-   "name": "@EC_SSM_NAME@",
-   "version": "@PROJECT_VERSION@",
+   "name": "@NAME@",
+   "version": "@PROJECT_VERSION@@EC_COMP@",
    "platform": "@EC_PLAT@",
+   "compiler": "@EC_COMP@",
    "maintainer": "@MAINTAINER@",
    "summary": "@SUMMARY@ (@URL@)",
    "description": "@DESCRIPTION@",

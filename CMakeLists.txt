@@ -33,10 +33,10 @@ set_target_properties(tdpack PROPERTIES
     POSITION_INDEPENDENT_CODE ON)
    
 install(TARGETS tdpack
-        PUBLIC_HEADER DESTINATION include/${EC_SSM_ARCH}
-        LIBRARY       DESTINATION lib/${EC_SSM_ARCH}
-        ARCHIVE       DESTINATION lib/${EC_SSM_ARCH})
-install(FILES ${PROJECT_MODULE_FILES} DESTINATION include/${EC_SSM_ARCH})
+        PUBLIC_HEADER DESTINATION include
+        LIBRARY       DESTINATION lib
+        ARCHIVE       DESTINATION lib)
+install(FILES ${PROJECT_MODULE_FILES} DESTINATION include)
 
 #----- Generate the config file for the project to be usable via cmake's find_package command
 set(INCLUDE_INSTALL_DIR include)
@@ -62,7 +62,7 @@ install(FILES   "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
 #----- Packaging
 ec_package_name()                # Define package prefix  
 ec_build_config()                # Create build configuration script
-ec_prepare_ssm(lib bin include)  # Prepare ssm packaging files
+ec_prepare_ssm()                 # Prepare ssm packaging files
 
 set(CPACK_GENERATOR "TGZ")
 set(CPACK_PACKAGE_VENDOR "ECCC")
