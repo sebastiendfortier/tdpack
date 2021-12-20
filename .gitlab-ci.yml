@@ -1,5 +1,9 @@
 variables:
    GIT_SUBMODULE_STRATEGY: recursive
+   ORD_SOUMET_W: "10"
+   ORD_SOUMET_C: "20"
+   ORD_SOUMET_M: "100G"
+   ORD_SOUMET_TMPFS: "10G"
 stages:
    - build
    - test
@@ -69,24 +73,24 @@ build:skylake-intel-19.0.3:
       paths:
          - build_skylake-intel-19.0.3
 
-build:amd64-intel-19.0.3:
+build:amd-intel-19.0.3:
    stage: build
    only:
       - master
       - dev
       - tags
    script:
-      - source ci-env/latest/ubuntu-18.04-amd64-64/intel-19.0.3.199.sh
-      - mkdir build_amd64-intel-19.0.3
-      - cd build_amd64-intel-19.0.3
+      - source ci-env/latest/ubuntu-18.04-amd-64/intel-19.0.3.199.sh
+      - mkdir build_amd-intel-19.0.3
+      - cd build_amd-intel-19.0.3
       - cmake ../ 
       - make
    artifacts:
       expire_in: 2 hrs
       paths:
-         - build_amd64-intel-19.0.3
+         - build_amd-intel-19.0.3
 
-build:amd64-gnu-7.4.0:
+build:amd-gnu-7.4.0:
    stage: build
    only:
       - master
@@ -96,14 +100,14 @@ build:amd64-gnu-7.4.0:
       - set +e
       - source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh
       - set -e
-      - mkdir build_amd64-gnu-7.4.0
-      - cd build_amd64-gnu-7.4.0
+      - mkdir build_amd-gnu-7.4.0
+      - cd build_amd-gnu-7.4.0
       - cmake ../ 
       - make
    artifacts:
       expire_in: 2 hrs
       paths:
-         - build_amd64-gnu-7.4.0
+         - build_amd-gnu-7.4.0
 
 #test:intel-19.0.3:
 #   stage: test
@@ -113,10 +117,10 @@ build:amd64-gnu-7.4.0:
 #      - tags
 #   script:
 #      - source ci-env/latest/ubuntu-18.04-amd-64/intel-19.0.3.199.sh
-#      - cd build_amd64-intel-19.0.3
+#      - cd build_amd-intel-19.0.3
 #      - make check
 
-#test:amd64-gnu-7.4.0:
+#test:amd-gnu-7.4.0:
 #   stage: test
 #   only:
 #      - master
@@ -124,7 +128,7 @@ build:amd64-gnu-7.4.0:
 #      - tags
 #   script:
 #      - source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh
-#      - cd build_amd64-gnu-7.4.0
+#      - cd build_amd-gnu-7.4.0
 #      - make check
 
 package:XC50_intel-19.0.3:
@@ -177,33 +181,33 @@ package:skylake-intel-19.0.3:
       - make package
       - ~/ci-admin-bundle/bin/ci-package-ssm.sh package
 
-package:amd64-intel-19.0.3:
+package:amd-intel-19.0.3:
    stage: package
    only:
       - tags
    dependencies:
-      - build:amd64-intel-19.0.3
+      - build:amd-intel-19.0.3
    environment:
       name: testing
    script:
-      - source ci-env/latest/ubuntu-18.04-amd64-64/intel-19.0.3.199.sh
-      - cd build_amd64-intel-19.0.3
+      - source ci-env/latest/ubuntu-18.04-amd-64/intel-19.0.3.199.sh
+      - cd build_amd-intel-19.0.3
       - make package
       - ~/ci-admin-bundle/bin/ci-package-ssm.sh package
 
-package:amd64-gnu-7.4.0:
+package:amd-gnu-7.4.0:
    stage: package
    only:
       - tags
    dependencies:
-      - build:amd64-gnu-7.4.0
+      - build:amd-gnu-7.4.0
    environment:
       name: testing
    script:
       - set +e
       - source ci-env/latest/ubuntu-18.04-amd-64/gnu-7.4.0.sh
       - set -e
-      - cd build_amd64-gnu-7.4.0
+      - cd build_amd-gnu-7.4.0
       - make package
       - ~/ci-admin-bundle/bin/ci-package-ssm.sh package
       
