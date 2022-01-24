@@ -22,7 +22,7 @@ ec_build_info()            # Generate build include file (optional)
 
 file(GLOB PROJECT_C_FILES src/*.c)
 file(GLOB PROJECT_F_FILES src/*.F90)
-file(GLOB PROJECT_INCLUDE_FILES src/*.h*)
+file(GLOB PROJECT_INCLUDE_FILES src/*.h* src/*.inc)
 set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod ${CMAKE_CURRENT_BINARY_DIR}/tdpack.mod)
 
 add_library(tdpack ${PROJECT_C_FILES} ${PROJECT_F_FILES})

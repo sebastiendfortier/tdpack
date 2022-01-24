@@ -20,7 +20,6 @@ subroutine mfoqsa3(qs,tt,ps,ni,nk,n)
    use tdpack
    implicit none
 !!!#include <arch_specific.hf>
-   include "rmnlib_basics.inc"
    !@objective calcule hum sp saturante,(eau seulement)
    !@arguments
    !          - Output -

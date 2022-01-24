@@ -20,7 +20,6 @@ subroutine mfohr4 (hr, qq, tt, ps, ni, nk, n, satuco)
    use tdpack
    implicit none
 !!!#include <arch_specific.hf>
-   include "rmnlib_basics.inc"
    !@objective compute relative humidity from specific humidity
    !           temperature and pression
    !@arguments

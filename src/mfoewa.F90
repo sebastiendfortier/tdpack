@@ -19,7 +19,6 @@ subroutine mfoewa(ew,tt,ni,nk,n)
    use tdpack
    implicit none
 !!!#include <arch_specific.hf>
-   include "rmnlib_basics.inc"
    !@object calcule tension de vapeur saturante ew. (eau seulement)
    !        calculate the saturation vapour pressure. (Water phase
    !        considered only for all temperatures)

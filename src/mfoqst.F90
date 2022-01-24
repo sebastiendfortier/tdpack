@@ -21,7 +21,6 @@ subroutine mfoqst3(qs,tt,ps,ni,nk,n)
    implicit none
    !@object calcule humidite specifique saturante.
 !!!#include <arch_specific.hf>
-   include "rmnlib_basics.inc"
    !@arguments
    !          - Output -
    ! qs       saturation specific humidity in kg/kg

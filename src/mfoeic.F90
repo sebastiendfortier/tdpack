@@ -19,7 +19,6 @@ subroutine mfoeic(ei,tt,ni,nk,n)
    use tdpack
    implicit none
 !!!#include <arch_specific.hf>
-   include "rmnlib_basics.inc"
    !@object calcule tension de vapeur saturante ei. (glace seulement)
    !       calculate the saturation vapour pressure. (Ice phase
    !       considered only for all temperatures)
