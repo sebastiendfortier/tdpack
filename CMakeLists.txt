@@ -13,8 +13,6 @@ project(${NAME} DESCRIPTION "${DESCRIPTION}")
 set(PROJECT_VERSION ${VERSION}${STATE})
 set(TDPACK_VERSION ${PROJECT_VERSION} CACHE INTERNAL "libtdpack version" FORCE) # Needed for cascaded version identification
 
-option(BUILD_SHARED_LIBS "Build shared libraries instead of static ones." FALSE)
-
 enable_language(C Fortran)
 include(ec_compiler_presets)
 include(ec_doxygen)
