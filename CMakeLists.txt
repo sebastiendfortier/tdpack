@@ -25,17 +25,26 @@ file(GLOB PROJECT_F_FILES src/*.F90)
 file(GLOB PROJECT_INCLUDE_FILES src/*.h* src/*.inc)
 set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod ${CMAKE_CURRENT_BINARY_DIR}/tdpack.mod)
 
-add_library(tdpack ${PROJECT_C_FILES} ${PROJECT_F_FILES})
+add_library(tdpack STATIC ${PROJECT_C_FILES} ${PROJECT_F_FILES})
 add_dependencies(tdpack tdpack_build_info)
 set_target_properties(tdpack PROPERTIES
     VERSION ${PROJECT_VERSION}
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
-    POSITION_INDEPENDENT_CODE ON)
+    POSITION_INDEPENDENT_CODE ON
+    OUTPUT_NAME tdpack)
    
-install(TARGETS tdpack
-        PUBLIC_HEADER DESTINATION include
-        LIBRARY       DESTINATION lib
-        ARCHIVE       DESTINATION lib)
+add_library(tdpack_shared SHARED ${PROJECT_C_FILES} ${PROJECT_F_FILES})
+add_dependencies(tdpack_shared tdpack_build_info)
+set_target_properties(tdpack_shared PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
+    POSITION_INDEPENDENT_CODE ON
+    OUTPUT_NAME tdpack)
+   
+install(TARGETS tdpack tdpack_shared
+    PUBLIC_HEADER DESTINATION include
+    LIBRARY       DESTINATION lib
+    ARCHIVE       DESTINATION lib)
 install(FILES ${PROJECT_MODULE_FILES} DESTINATION include)
 
 #----- Generate the config file for the project to be usable via cmake's find_package command
