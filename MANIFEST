@@ -1,6 +1,7 @@
 NAME       : tdpack
 VERSION    : 1.6.0
 BUILD      : Release
+STATE      : 
 DESCRIPTION: ECCC-MRD Collection of thermodynamic routines for numerical weather prediction 
 SUMMARY    : Library of thermodynamic routines for numerical weather prediction 
 MAINTAINER : Vivian Lee - Vivian.Lee@ec.gc.ca
