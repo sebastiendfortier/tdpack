@@ -32,7 +32,7 @@ set_target_properties(tdpack PROPERTIES
     OUTPUT_NAME tdpack)
    
 add_library(tdpack_shared SHARED ${PROJECT_C_FILES} ${PROJECT_F_FILES})
-add_dependencies(tdpack_shared tdpack_build_info)
+add_dependencies(tdpack_shared tdpack tdpack_build_info)
 set_target_properties(tdpack_shared PROPERTIES
     VERSION ${PROJECT_VERSION}
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
