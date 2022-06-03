@@ -92,7 +92,7 @@ package:amd64-inteloneapi-2022.1.2:
    only:
       - tags
    dependencies:
-      - amd64-inteloneapi-2022.1.2
+      - build:amd64-inteloneapi-2022.1.2
    environment:
       name: testing
    script:
