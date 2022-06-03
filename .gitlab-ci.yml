@@ -50,7 +50,7 @@ build:amd64-inteloneapi-2022.1.2:
    artifacts:
       expire_in: 2 hrs
       paths:
-         - amd64-inteloneapi-2022.1.2
+         - build_amd64-inteloneapi-2022.1.2
 
 build:amd64-gnu-9.3.0:
    stage: build
