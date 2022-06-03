@@ -2,16 +2,17 @@
 # sufficient
 cmake_minimum_required(VERSION 3.16)
 
+message(STATUS "(EC) Generating tdpack Makefile")
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_rpn)
 include(ec_init)           # Initialise compilers and ec specific functions
 ec_git_version()           # Get version from git state
 ec_parse_manifest()        # Parse MANIFEST file
 
-# Given our wacky compiler setups, languages must be activated after the
-# compieler has been configured
+# Given our wacky compiler setups, languages must be activated after the compiler has been configured
 project(${NAME} DESCRIPTION "${DESCRIPTION}")
 set(PROJECT_VERSION ${VERSION}${STATE})
-set(TDPACK_VERSION ${PROJECT_VERSION} CACHE INTERNAL "libtdpack version" FORCE) # Needed for cascaded version identification
+set(tdpack_VERSION ${PROJECT_VERSION} CACHE INTERNAL "libtdpack version" FORCE) # Needed for cascaded version identification
 
 enable_language(C Fortran)
 include(ec_compiler_presets)
@@ -32,7 +33,7 @@ set_target_properties(tdpack PROPERTIES
     OUTPUT_NAME tdpack)
    
 add_library(tdpack_shared SHARED ${PROJECT_C_FILES} ${PROJECT_F_FILES})
-add_dependencies(tdpack_shared tdpack_build_info)
+add_dependencies(tdpack_shared tdpack tdpack_build_info)
 set_target_properties(tdpack_shared PROPERTIES
     VERSION ${PROJECT_VERSION}
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
