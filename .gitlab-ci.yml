@@ -74,6 +74,7 @@ package:icelake-inteloneapi-2022.1.2:
    stage: package
    only:
       - tags
+      - schedules
    dependencies:
       - build:icelake-inteloneapi-2022.1.2
    environment:
@@ -90,6 +91,7 @@ package:amd64-inteloneapi-2022.1.2:
    stage: package
    only:
       - tags
+      - schedules
    dependencies:
       - build:amd64-inteloneapi-2022.1.2
    environment:
@@ -106,6 +108,7 @@ package:amd64-gnu-9.3.0:
    stage: package
    only:
       - tags
+      - schedules
    dependencies:
       - build:amd64-gnu-9.3.0
    environment:
@@ -122,6 +125,7 @@ deploy:staging:
    stage: deploy
    only:
       - tags
+      - schedules
    script:
       - |-
          source ci-env/latest/profile.sh
