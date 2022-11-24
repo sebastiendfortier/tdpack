@@ -47,6 +47,7 @@ install(TARGETS tdpack tdpack_shared
     LIBRARY       DESTINATION lib
     ARCHIVE       DESTINATION lib)
 install(FILES ${PROJECT_MODULE_FILES} DESTINATION include)
+ec_install_symlink(./lib${NAME}.a ${CMAKE_INSTALL_PREFIX}/lib/lib${NAME}_${PROJECT_VERSION}.a)
 
 #----- Generate the config file for the project to be usable via cmake's find_package command
 set(INCLUDE_INSTALL_DIR include)
