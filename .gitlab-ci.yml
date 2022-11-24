@@ -45,13 +45,8 @@ build:rhel-8-icelake-64_inteloneapi-2022.1.2:
 #       - build:rhel-8-icelake-64_inteloneapi-2022.1.2
 #    script:
 #       - set +e
-<<<<<<< HEAD
-#       - source ci-env/latest/rhel-8-icelake-64/inteloneapi-2022.1.2.sh
-#       - . r.load.dot ${ECCI_PROCESS_SSM}/libs
-=======
 #       - source ~/ci-env/latest/rhel-8-icelake-64/inteloneapi-2022.1.2.sh
 #       - . r.load.dot ${SSM}/libs
->>>>>>> 8240cf644c37e26c308df2877e996350befe320e
 #       - set -e
 #       - cd build_rhel-8-icelake-64_inteloneapi-2022.1.2
 #       - make check
@@ -106,13 +101,8 @@ build:rhel-8-amd64_inteloneapi-2022.1.2:
 #       - build:rhel-8-amd64_inteloneapi-2022.1.2
 #    script:
 #       - set +e
-<<<<<<< HEAD
-#       - source ci-env/latest/rhel-8-amd-64/inteloneapi-2022.1.2.sh
-#       - . r.load.dot ${ECCI_PROCESS_SSM}/libs
-=======
 #       - source ~/ci-env/latest/rhel-8-amd-64/inteloneapi-2022.1.2.sh
 #       - . r.load.dot ${SSM}/libs
->>>>>>> 8240cf644c37e26c308df2877e996350befe320e
 #       - set -e
 #       - cd build_rhel-8-amd64_inteloneapi-2022.1.2
 #       - make check
@@ -167,13 +157,8 @@ build:rhel-8-amd64_gnu-9.3.0:
 #       - build:rhel-8-amd64_gnu-9.3.0
 #    script:
 #       - set +e
-<<<<<<< HEAD
-#       - source ci-env/latest/rhel-8-amd-64/gnu-9.3.0.sh 
-#       - . r.load.dot ${ECCI_PROCESS_SSM}/libs
-=======
 #       - source ~/ci-env/latest/rhel-8-amd-64/gnu-9.3.0.sh 
 #       - . r.load.dot ${SSM}/libs
->>>>>>> 8240cf644c37e26c308df2877e996350befe320e
 #       - set -e
 #       - cd build_rhel-8-amd64_gnu-9.3.0
 #       - make check
