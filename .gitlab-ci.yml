@@ -207,24 +207,24 @@ build:ubuntu-18.04-amd64_gnu-9.3.0:
       paths:
          - build_ubuntu-18.04-amd64_gnu-9.3.0
 
-test:ubuntu-18.04-amd64_gnu-9.3.0:
-   variables:
-      ORD_SOUMET_MACH    : gpsc5
-      ORD_SOUMET_IMAGE   : eccc/eccc_all_default_ubuntu-18.04-amd64_latest
-      ORD_SOUMET_PROJECT : eccc_mrd
-   stage: test
-   only:
-      - master
-      - dev
-      - tags
-   dependencies:
-      - build:ubuntu-18.04-amd64_gnu-9.3.0
-   script:
-      - set +e
-      - source ~/ci-env/latest/ubuntu-18.04-amd-64/gnu-9.3.0.sh
-      - set -e
-      - cd build_ubuntu-18.04-amd64_gnu-9.3.0
-      - make check
+#test:ubuntu-18.04-amd64_gnu-9.3.0:
+#   variables:
+#      ORD_SOUMET_MACH    : gpsc5
+#      ORD_SOUMET_IMAGE   : eccc/eccc_all_default_ubuntu-18.04-amd64_latest
+#      ORD_SOUMET_PROJECT : eccc_mrd
+#   stage: test
+#   only:
+#      - master
+#      - dev
+#      - tags
+#   dependencies:
+#      - build:ubuntu-18.04-amd64_gnu-9.3.0
+#   script:
+#      - set +e
+#      - source ~/ci-env/latest/ubuntu-18.04-amd-64/gnu-9.3.0.sh
+#      - set -e
+#      - cd build_ubuntu-18.04-amd64_gnu-9.3.0
+#      - make check
 
 package:ubuntu-18.04-amd64_gnu-9.3.0:
    variables:
