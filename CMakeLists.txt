@@ -24,29 +24,42 @@ include(ec_compiler_presets)
 file(GLOB PROJECT_C_FILES src/*.c)
 file(GLOB PROJECT_F_FILES src/*.F90)
 file(GLOB PROJECT_INCLUDE_FILES src/*.h* src/*.inc)
-set(PROJECT_MODULE_FILES ${CMAKE_CURRENT_BINARY_DIR}/tdpack_const.mod ${CMAKE_CURRENT_BINARY_DIR}/tdpack.mod)
+set(MODULE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include)
+set(PROJECT_MODULE_FILES ${MODULE_DIR}/tdpack_const.mod ${MODULE_DIR}/tdpack.mod)
 
 add_library(tdpack STATIC ${PROJECT_C_FILES} ${PROJECT_F_FILES})
 add_dependencies(tdpack tdpack_build_info)
-set_target_properties(tdpack PROPERTIES
+
+add_library(tdpack-shared SHARED  $<TARGET_OBJECTS:tdpack>)
+add_dependencies(tdpack-shared tdpack tdpack_build_info)
+set_target_properties(tdpack tdpack-shared PROPERTIES
     VERSION ${PROJECT_VERSION}
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
+    Fortran_MODULE_DIRECTORY ${MODULE_DIR}
+    INTERFACE_COMPILE_DEFINITIONS HAVE_TDPACK=${PROJECT_VERSION}
+    INTERFACE_INCLUDE_DIRECTORIES $<BUILD_INTERFACE:${MODULE_DIR}>
     POSITION_INDEPENDENT_CODE ON
     OUTPUT_NAME tdpack)
    
-add_library(tdpack_shared SHARED ${PROJECT_C_FILES} ${PROJECT_F_FILES})
-add_dependencies(tdpack_shared tdpack tdpack_build_info)
-set_target_properties(tdpack_shared PROPERTIES
-    VERSION ${PROJECT_VERSION}
-    PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
-    POSITION_INDEPENDENT_CODE ON
-    OUTPUT_NAME tdpack)
-   
-install(TARGETS tdpack tdpack_shared
+install(TARGETS tdpack
+    EXPORT ${PROJECT_NAME}-static-targets
+    INCLUDES      DESTINATION include
+    PUBLIC_HEADER DESTINATION include
+    LIBRARY       DESTINATION lib
+    ARCHIVE       DESTINATION lib)
+install(TARGETS tdpack-shared
+    EXPORT ${PROJECT_NAME}-shared-targets
+    INCLUDES      DESTINATION include
     PUBLIC_HEADER DESTINATION include
     LIBRARY       DESTINATION lib
     ARCHIVE       DESTINATION lib)
 install(FILES ${PROJECT_MODULE_FILES} DESTINATION include)
+
+if(BUILD_SHARED_LIBS)
+    add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME}-shared)
+else()
+    add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+endif()
 
 # Symbolic link for archive numbered version
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -57,6 +70,13 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${PROJECT_NAME}_${PROJECT_VERSION}.
 set(INCLUDE_INSTALL_DIR include)
 set(LIB_INSTALL_DIR     lib)
 set(CONFIG_INSTALL_DIR  "${LIB_INSTALL_DIR}/cmake/${PROJECT_NAME}-${PROJECT_VERSION}")
+
+install(EXPORT ${PROJECT_NAME}-shared-targets
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION ${CONFIG_INSTALL_DIR})
+install(EXPORT ${PROJECT_NAME}-static-targets
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION ${CONFIG_INSTALL_DIR})
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
