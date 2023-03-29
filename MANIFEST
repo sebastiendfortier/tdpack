@@ -1,5 +1,5 @@
 NAME       : tdpack
-VERSION    : 1.6.1
+VERSION    : 
 BUILD      : Release
 STATE      : 
 DESCRIPTION: ECCC-MRD Collection of thermodynamic routines for numerical weather prediction 
