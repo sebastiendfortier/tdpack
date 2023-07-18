@@ -27,12 +27,12 @@ file(GLOB PROJECT_INCLUDE_FILES src/*.h* src/*.inc)
 set(MODULE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include)
 set(PROJECT_MODULE_FILES ${MODULE_DIR}/tdpack_const.mod ${MODULE_DIR}/tdpack.mod)
 
-add_library(tdpack STATIC ${PROJECT_C_FILES} ${PROJECT_F_FILES})
-add_dependencies(tdpack tdpack_build_info)
+add_library(${PROJECT_NAME}-static STATIC ${PROJECT_C_FILES} ${PROJECT_F_FILES})
+add_dependencies(${PROJECT_NAME}-static tdpack_build_info)
 
-add_library(tdpack-shared SHARED  $<TARGET_OBJECTS:tdpack>)
-add_dependencies(tdpack-shared tdpack tdpack_build_info)
-set_target_properties(tdpack tdpack-shared PROPERTIES
+add_library(${PROJECT_NAME}-shared SHARED  $<TARGET_OBJECTS:${PROJECT_NAME}-static>)
+add_dependencies(${PROJECT_NAME}-shared ${PROJECT_NAME}-static ${PROJECT_NAME}_build_info)
+set_target_properties(${PROJECT_NAME}-static ${PROJECT_NAME}-shared PROPERTIES
     VERSION ${PROJECT_VERSION}
     PUBLIC_HEADER "${PROJECT_INCLUDE_FILES}"
     Fortran_MODULE_DIRECTORY ${MODULE_DIR}
@@ -41,13 +41,13 @@ set_target_properties(tdpack tdpack-shared PROPERTIES
     POSITION_INDEPENDENT_CODE ON
     OUTPUT_NAME tdpack)
    
-install(TARGETS tdpack
+install(TARGETS ${PROJECT_NAME}-static
     EXPORT ${PROJECT_NAME}-static-targets
     INCLUDES      DESTINATION include
     PUBLIC_HEADER DESTINATION include
     LIBRARY       DESTINATION lib
     ARCHIVE       DESTINATION lib)
-install(TARGETS tdpack-shared
+install(TARGETS ${PROJECT_NAME}-shared
     EXPORT ${PROJECT_NAME}-shared-targets
     INCLUDES      DESTINATION include
     PUBLIC_HEADER DESTINATION include
@@ -58,11 +58,11 @@ install(FILES ${PROJECT_MODULE_FILES} DESTINATION include)
 if(BUILD_SHARED_LIBS)
     add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME}-shared)
 else()
-    add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+    add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME}-static)
 endif()
 
 # Symbolic link for archive numbered version
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+add_custom_command(TARGET ${PROJECT_NAME}-static POST_BUILD
     COMMAND ln -sfv lib${PROJECT_NAME}.a lib${PROJECT_NAME}_${PROJECT_VERSION}.a)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${PROJECT_NAME}_${PROJECT_VERSION}.a DESTINATION lib)
 
